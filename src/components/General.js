@@ -10,18 +10,35 @@ class General extends Component {
         }
     }
 
-    handleChange = (e) => {
+    handleChangeName = (e) => {
         this.setState({
             userName: e.target.value,
-            userEmail: "",
-            userPhone: "",
+            userEmail: this.state.userEmail,
+            userPhone: this.state.userPhone,
         });
-       console.log(this.state.userName);
+    }
+
+    handleChangeEmail = (e) => {
+        this.setState({
+            userName: this.state.userName,
+            userEmail: e.target.value,
+            userPhone: this.state.userPhone,
+        });
+    }
+
+    handleChangePhone = (e) => {
+        this.setState({
+            userName: this.state.userName,
+            userEmail: this.state.userEmail,
+            userPhone: e.target.value,
+        });
     }
 
     presentInfo = (e) => {
         e.preventDefault();
         console.log(this.state.userName);
+        console.log(this.state.userEmail);
+        console.log(this.state.userPhone);
     }
 
     render() {
@@ -30,13 +47,22 @@ class General extends Component {
             <div>
                 <label htmlFor="name">Name</label>
                 <input 
-                onChange={this.handleChange}
+                onChange={this.handleChangeName}
                 value={this.state.userName}
-                type="text" id="name" />
+                type="text" 
+                id="name" />
                 <label htmlFor="email">Email</label>
-                <input type="email" id="email" />
+                <input 
+                onChange={this.handleChangeEmail}
+                value={this.state.userEmail}
+                type="email" 
+                id="email" />
                 <label htmlFor="phone">Phone number</label>
-                <input type="tel" id="phone" />
+                <input 
+                onChange={this.handleChangePhone}
+                value={this.state.userPhone}
+                type="tel" 
+                id="phone" />
                 <button onClick={this.presentInfo}>Submit</button>
             </div>
         );
