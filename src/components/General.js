@@ -47,22 +47,25 @@ class General extends Component {
             <div>
                 <label htmlFor="name">Name</label>
                 <input 
-                onChange={this.handleChangeName}
-                value={this.state.name}
-                type="text" 
-                id="name" />
+                    onChange={this.handleChangeName}
+                    value={this.state.name}
+                    type="text" 
+                    id="name" 
+                />
                 <label htmlFor="email">Email</label>
                 <input 
-                onChange={this.handleChangeEmail}
-                value={this.state.email}
-                type="email" 
-                id="email" />
+                    onChange={this.handleChangeEmail}
+                    value={this.state.email}
+                    type="email" 
+                    id="email" 
+                />
                 <label htmlFor="phone">Phone number</label>
                 <input 
-                onChange={this.handleChangePhone}
-                value={this.state.phone}
-                type="tel" 
-                id="phone" />
+                    onChange={this.handleChangePhone}
+                    value={this.state.phone}
+                    type="tel" 
+                    id="phone" 
+                />
                 <button onClick={this.presentInfo}>Submit</button>
             </div>
         );
