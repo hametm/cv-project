@@ -7,7 +7,14 @@ class Practical extends Component {
     render() {
         return (
             <div>
-
+                <label htmlFor="company">Company</label>
+                <input type="text" id="company" />
+                <label htmlFor="position">Position</label>
+                <input type="text" id="position" />
+                <label htmlFor="company">Company</label>
+                <input type="text" id="company" />
+                <label htmlFor="companyDates">Dates worked</label>
+                <input type="date" id="companyDates" />
             </div>
         );
     }
