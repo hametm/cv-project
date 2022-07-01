@@ -3,7 +3,14 @@ import React, { Component } from "react";
 class Practical extends Component {
     constructor(props) {
         super(props);
-        this.state = this.props.practicalInfo;
+        this.state = {
+            company: "",
+            position: "",
+            responsibilities: "",
+            startDate: "",
+            endDate: "",
+            show: 1,
+        }
     }
 
     changeCompany = (e) => {
@@ -37,16 +44,41 @@ class Practical extends Component {
         });
     }
 
-    presentInfo = (e) => {
-        e.preventDefault();
-        console.log(this.state.company);
-        console.log(this.state.position);
-        console.log(this.state.responsibilities);
-        console.log(this.state.startDate);
-        console.log(this.state.endDate);
+    toggle = () => {
+        if (this.state.show === 1) {
+            return this.showPractical();
+        }
+        if (this.state.show === 0) {
+            return this.editPractical();
+        }
     }
 
-    render() {
+    onEditClick = (e) => {
+        e.preventDefault();
+        this.setState({
+            show: 0,
+        });
+    }
+
+    showPractical = () => {
+        return (
+            <div id="practicalContainer">
+                <label htmlFor="company">Company</label>
+                <p>{this.state.company}</p>
+                <label htmlFor="position">Position</label>
+                <p>{this.state.position}</p>
+                <label htmlFor="responsibilities">Responsibilities</label>
+                <p>{this.state.responsibilities}</p>
+                <label htmlFor="startDate">Start date</label>
+                <p>{this.state.startDate}</p>
+                <label htmlFor="endDate">End date</label>
+                <p>{this.state.endDate}</p>
+                <button onClick={this.onEditClick}>Edit</button>
+            </div>
+        );
+    }
+
+    editPractical = () => {
         return (
             <div>
                 <label htmlFor="company">Company</label>
@@ -84,8 +116,22 @@ class Practical extends Component {
                     type="date" 
                     id="endDate" 
                 />
-                <button onClick={this.presentInfo}>Submit</button>
+                <button onClick={this.onSubmitClick}>Submit</button>
             </div>
+        );
+    }
+
+    onSubmitClick = (e) => {
+        e.preventDefault();
+        this.setState({
+            show: 1,
+        });
+    }
+
+
+    render() {
+        return (
+            <div>{this.toggle()}</div>
         );
     }
 }

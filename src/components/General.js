@@ -29,7 +29,7 @@ class General extends Component {
         });
     }
 
-    toggleGeneral = () => {
+    toggle = () => {
         if (this.state.show === 1) {
             return this.showGeneral();
         }
@@ -43,7 +43,6 @@ class General extends Component {
         this.setState({
             show: 0,
         });
-        console.log("edit click");
     }
 
     showGeneral = () => {
@@ -98,9 +97,7 @@ class General extends Component {
 
     render() {
         return (
-            <div>
-                {this.toggleGeneral()}
-           </div>
+            <div>{this.toggle()}</div>
         );
     }
 }

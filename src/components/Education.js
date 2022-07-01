@@ -3,7 +3,13 @@ import React, { Component } from "react";
 class Education extends Component {
     constructor(props) {
         super(props);
-        this.state = this.props.educationInfo;
+        this.state = {
+            school: "",
+            major: "",
+            startDate: "",
+            endDate: "",
+            show: 1,
+        }
     }
 
     changeSchool = (e) => {
@@ -30,17 +36,41 @@ class Education extends Component {
         });
     }
 
-    presentInfo = (e) => {
-        e.preventDefault();
-        console.log(this.state.school);
-        console.log(this.state.major);
-        console.log(this.state.startDate);
-        console.log(this.state.endDate);
+    toggle = () => {
+        if (this.state.show === 1) {
+            return this.showEducation();
+        }
+        if (this.state.show === 0) {
+            return this.editEducation();
+        }
     }
 
-    render() {
+    onEditClick = (e) => {
+        e.preventDefault();
+        this.setState({
+            show: 0,
+        });
+    }
+
+    showEducation = () => {
         return (
-            <div>
+            <div id="educationContainer">
+                <label htmlFor="school">School</label>
+                <p>{this.state.school}</p>
+                <label htmlFor="major">Major</label>
+                <p>{this.state.major}</p>
+                <label htmlFor="startDate">Start date</label>
+                <p>{this.state.startDate}</p>
+                <label htmlFor="endDate">End date</label>
+                <p>{this.state.endDate}</p>
+                <button onClick={this.onEditClick}>Edit</button>
+            </div>
+        );
+    }
+
+    editEducation = () => {
+        return (
+            <div id="educationContainer">
                 <label htmlFor="school">University</label>
                 <input 
                     onChange={this.changeSchool}
@@ -48,7 +78,7 @@ class Education extends Component {
                     type="text" 
                     id="school" 
                 />
-                    <label htmlFor="major">Major</label>
+                <label htmlFor="major">Major</label>
                 <input 
                     onChange={this.changeMajor}
                     value={this.state.major}
@@ -69,9 +99,21 @@ class Education extends Component {
                     type="date" 
                     id="endDate" 
                 />
-                <button onClick={this.presentInfo}>Submit</button>
-
+                <button onClick={this.onSubmitClick}>Submit</button>
             </div>
+        );
+    }
+
+    onSubmitClick = (e) => {
+        e.preventDefault();
+        this.setState({
+            show: 1,
+        });
+    }
+
+    render() {
+        return (
+            <div>{this.toggle()}</div>
         );
     }
 }
