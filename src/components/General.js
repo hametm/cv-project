@@ -1,73 +1,106 @@
 import React, { Component } from "react";
 
 class General extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             name: "",
             email: "",
             phone: "",
+            show: 1,
         }
     }
 
-    handleChangeName = (e) => {
+    changeName = (e) => {
         this.setState({
             name: e.target.value,
-            email: this.state.email,
-            phone: this.state.phone,
         });
     }
 
-    handleChangeEmail = (e) => {
+    changeEmail = (e) => {
         this.setState({
-            name: this.state.name,
             email: e.target.value,
-            phone: this.state.phone,
         });
     }
 
-    handleChangePhone = (e) => {
+    changePhone = (e) => {
         this.setState({
-            name: this.state.name,
-            email: this.state.email,
             phone: e.target.value,
         });
     }
 
-    presentInfo = (e) => {
-        e.preventDefault();
-        console.log(this.state.name);
-        console.log(this.state.email);
-        console.log(this.state.phone);
+    toggleGeneral = () => {
+        if (this.state.show === 1) {
+            return this.showGeneral();
+        }
+        if (this.state.show === 0) {
+            return this.editGeneral();
+        }
     }
 
-    render() {
+    onEditClick = (e) => {
+        e.preventDefault();
+        this.setState({
+            show: 0,
+        });
+        console.log("edit click");
+    }
+
+    showGeneral = () => {
         return (
-           
-            <div>
+            <div id="generalContainer">
+                <label htmlFor="name">Name</label>
+                <p>{this.state.name}</p>
+                <label htmlFor="email">Email</label>
+                <p>{this.state.email}</p>
+                <label htmlFor="phone">Phone number</label>
+                <p>{this.state.phone}</p>
+                <button onClick={this.onEditClick}>Edit</button>
+            </div>
+        );
+    }
+
+    editGeneral = () => {
+        return (
+            <div id="generalContainer">
                 <label htmlFor="name">Name</label>
                 <input 
-                    onChange={this.handleChangeName}
+                    onChange={this.changeName}
                     value={this.state.name}
                     type="text" 
                     id="name" 
                 />
                 <label htmlFor="email">Email</label>
                 <input 
-                    onChange={this.handleChangeEmail}
+                    onChange={this.changeEmail}
                     value={this.state.email}
                     type="email" 
                     id="email" 
                 />
                 <label htmlFor="phone">Phone number</label>
                 <input 
-                    onChange={this.handleChangePhone}
+                    onChange={this.changePhone}
                     value={this.state.phone}
                     type="tel" 
                     id="phone" 
                 />
-                <button onClick={this.presentInfo}>Submit</button>
+                <button onClick={this.onSubmitClick}>Submit</button>
             </div>
+        );
+    }
+
+    onSubmitClick = (e) => {
+        e.preventDefault();
+        this.setState({
+            show: 1,
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                {this.toggleGeneral()}
+           </div>
         );
     }
 }

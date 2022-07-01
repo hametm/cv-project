@@ -3,62 +3,36 @@ import React, { Component } from "react";
 class Practical extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            company: "",
-            position: "",
-            responsibilities: "",
-            startDate: "",
-            endDate: "",
-        }
+        this.state = this.props.practicalInfo;
     }
 
-    handleChangeCompany = (e) => {
+    changeCompany = (e) => {
         this.setState({
             company: e.target.value,
-            position: this.state.position,
-            responsibilities: this.state.responsibilities,
-            startDate: this.state.startDate,
-            endDate: this.state.endDate,
         });
     }
 
-    handleChangePosition = (e) => {
+    changePosition = (e) => {
         this.setState({
-            company: this.state.company,
             position: e.target.value,
-            responsibilities: this.state.responsibilities,
-            startDate: this.state.startDate,
-            endDate: this.state.endDate,
         });
     }
 
-    handleChangeResponsibilities = (e) => {
+    changeResponsibilities = (e) => {
         this.setState({
-            company: this.state.company,
-            position: e.target.value,
             responsibilities: e.target.value,
-            startDate: this.state.startDate,
-            endDate: this.state.endDate,
         });
     }
 
-    handleChangeStartDate = (e) => {
+    changeStartDate = (e) => {
         this.setState({
-            company: this.state.company,
-            position: this.state.position,
-            responsibilities: this.state.responsibilities,
             startDate: e.target.value,
-            endDate: this.state.endDate,
         });
     }
 
 
-    handleChangeEndDate = (e) => {
+    changeEndDate = (e) => {
         this.setState({
-            company: this.state.company,
-            position: this.state.position,
-            responsibilities: this.state.responsibilities,
-            startDate: this.state.startDate,
             endDate: e.target.value
         });
     }
@@ -77,35 +51,35 @@ class Practical extends Component {
             <div>
                 <label htmlFor="company">Company</label>
                 <input 
-                    onChange={this.handleChangeCompany}
+                    onChange={this.changeCompany}
                     value={this.state.company}
                     type="text" 
                     id="company" 
                 />
                 <label htmlFor="position">Position</label>
                 <input 
-                    onChange={this.handleChangePosition}
+                    onChange={this.changePosition}
                     value={this.state.position}
                     type="text" 
                     id="position" 
                 />
                 <label htmlFor="responsibilities">Responsibilities</label>
                 <input 
-                    onChange={this.handleChangeResponsibilities}
+                    onChange={this.changeResponsibilities}
                     value={this.state.responsibilities}
                     type="text" 
                     id="responsibilities" 
                 />
                 <label htmlFor="startDate">Start date</label>
                 <input
-                    onChange={this.handleChangeStartDate}
+                    onChange={this.changeStartDate}
                     value={this.state.startDate} 
                     type="date" 
                     id="startDate" 
                 />
                 <label htmlFor="endDate">End date</label>
                 <input 
-                    onChange={this.handleChangeEndDate}
+                    onChange={this.changeEndDate}
                     value={this.state.endDate}
                     type="date" 
                     id="endDate" 

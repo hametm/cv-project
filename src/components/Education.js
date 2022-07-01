@@ -3,34 +3,30 @@ import React, { Component } from "react";
 class Education extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            school: "",
-            major: "",
-            dates: "",
-        }
+        this.state = this.props.educationInfo;
     }
 
-    handleChangeSchool = (e) => {
+    changeSchool = (e) => {
         this.setState({
             school: e.target.value,
-            major: this.state.major,
-            dates: this.state.dates,
         });
     }
 
-    handleChangeMajor = (e) => {
+    changeMajor = (e) => {
         this.setState({
-            school: this.state.school,
             major: e.target.value,
-            dates: this.state.dates,
         });
     }
 
-    handleChangeDates = (e) => {
+    changeStartDate = (e) => {
         this.setState({
-            school: this.state.school,
-            major: this.state.major,
-            dates: e.target.value,
+            startDate: e.target.value,
+        });
+    }
+
+    changeEndDate = (e) => {
+        this.setState({
+            endDate: e.target.value,
         });
     }
 
@@ -38,7 +34,8 @@ class Education extends Component {
         e.preventDefault();
         console.log(this.state.school);
         console.log(this.state.major);
-        console.log(this.state.dates);
+        console.log(this.state.startDate);
+        console.log(this.state.endDate);
     }
 
     render() {
@@ -46,24 +43,31 @@ class Education extends Component {
             <div>
                 <label htmlFor="school">University</label>
                 <input 
-                    onChange={this.handleChangeSchool}
+                    onChange={this.changeSchool}
                     value={this.state.school}
                     type="text" 
                     id="school" 
                 />
                     <label htmlFor="major">Major</label>
                 <input 
-                    onChange={this.handleChangeMajor}
+                    onChange={this.changeMajor}
                     value={this.state.major}
                     type="text" 
                     id="major" 
                 />
-                <label htmlFor="studyDates">Dates of study</label>
+                <label htmlFor="startDate">Start date</label>
                 <input 
-                    onChange={this.handleChangeDates}
-                    value={this.state.dates}
+                    onChange={this.changeStartDate}
+                    value={this.state.startDate}
                     type="date" 
-                    id="studyDates" 
+                    id="startDate" 
+                />
+                <label htmlFor="endDate">End date</label>
+                <input 
+                    onChange={this.changeEndDate}
+                    value={this.state.endDate}
+                    type="date" 
+                    id="endDate" 
                 />
                 <button onClick={this.presentInfo}>Submit</button>
 
