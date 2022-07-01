@@ -1,91 +1,74 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "../styles/style.css";
 
-class Practical extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            company: "",
-            position: "",
-            responsibilities: "",
-            startDate: "",
-            endDate: "",
-            show: 1,
+const Practical = (props) => {
+    const [company, setCompany] = useState("");
+    const [position, setPosition] = useState("");
+    const [responsibilities, setResponsibilities] = useState("");
+    const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
+    const [show, setShow] = useState(1);
+
+    const changeCompany = (e) => {
+        setCompany(e.target.value);
+    }
+
+    const changePosition = (e) => {
+        setPosition(e.target.value);
+    }
+
+    const changeResponsibilities = (e) => {
+        setResponsibilities(e.target.value);
+    }
+
+    const changeStartDate = (e) => {
+        setStartDate(e.target.value);
+    }
+
+
+    const changeEndDate = (e) => {
+        setEndDate(e.target.value);
+    }
+
+    const toggle = () => {
+        if (show === 1) {
+            return showPractical();
+        }
+        if (show === 0) {
+            return editPractical();
         }
     }
 
-    changeCompany = (e) => {
-        this.setState({
-            company: e.target.value,
-        });
-    }
-
-    changePosition = (e) => {
-        this.setState({
-            position: e.target.value,
-        });
-    }
-
-    changeResponsibilities = (e) => {
-        this.setState({
-            responsibilities: e.target.value,
-        });
-    }
-
-    changeStartDate = (e) => {
-        this.setState({
-            startDate: e.target.value,
-        });
-    }
-
-
-    changeEndDate = (e) => {
-        this.setState({
-            endDate: e.target.value
-        });
-    }
-
-    toggle = () => {
-        if (this.state.show === 1) {
-            return this.showPractical();
-        }
-        if (this.state.show === 0) {
-            return this.editPractical();
-        }
-    }
-
-    onEditClick = (e) => {
+    const onEditClick = (e) => {
         e.preventDefault();
-        this.setState({
-            show: 0,
-        });
+        setShow(0);
     }
 
-    showPractical = () => {
+    const showPractical = () => {
         return (
             <div id="practicalContainer" className="section">
                 <h2>Employment</h2>
                 <div className="buttonContainer">
-                    <button onClick={this.onEditClick}>Edit</button>
+                    <button onClick={onEditClick}>Edit</button>
                 </div>
-                <p>{this.state.company}</p>
-                <p>{this.state.position}</p>
-                <p>{this.state.responsibilities}</p>
-                <p>{this.state.startDate}</p>
-                <p>{this.state.endDate}</p>
+                <p>{company}</p>
+                <p>{position}</p>
+                <p>{responsibilities}</p>
+                <p>{startDate}</p>
+                <p>{endDate}</p>
             </div>
         );
     }
 
-    editPractical = () => {
+    const editPractical = () => {
         return (
             <div id="practicalContainer" className="section">
                 <h2>Employment</h2>
                 <div className="info">
                     <label htmlFor="company">Company</label>
                     <input
-                        onChange={this.changeCompany}
-                        value={this.state.company}
+                        onChange={changeCompany}
+                        value={company}
                         type="text"
                         id="company"
                     />
@@ -93,8 +76,8 @@ class Practical extends Component {
                 <div className="info">
                     <label htmlFor="position">Position</label>
                     <input
-                        onChange={this.changePosition}
-                        value={this.state.position}
+                        onChange={changePosition}
+                        value={position}
                         type="text"
                         id="position"
                     />
@@ -102,8 +85,8 @@ class Practical extends Component {
                 <div className="info">
                     <label htmlFor="responsibilities">Responsibilities</label>
                     <input
-                        onChange={this.changeResponsibilities}
-                        value={this.state.responsibilities}
+                        onChange={changeResponsibilities}
+                        value={responsibilities}
                         type="text"
                         id="responsibilities"
                     />
@@ -111,8 +94,8 @@ class Practical extends Component {
                 <div className="info">
                     <label htmlFor="startDate">Start date</label>
                     <input
-                        onChange={this.changeStartDate}
-                        value={this.state.startDate}
+                        onChange={changeStartDate}
+                        value={startDate}
                         type="date"
                         id="startDate"
                     />
@@ -120,32 +103,27 @@ class Practical extends Component {
                 <div className="info">
                     <label htmlFor="endDate">End date</label>
                     <input
-                        onChange={this.changeEndDate}
-                        value={this.state.endDate}
+                        onChange={changeEndDate}
+                        value={endDate}
                         type="date"
                         id="endDate"
                     />
                 </div>
                 <div className="buttonContainer">
-                    <button onClick={this.onSubmitClick}>Submit</button>
+                    <button onClick={onSubmitClick}>Submit</button>
                 </div>
             </div>
         );
     }
 
-    onSubmitClick = (e) => {
+    const onSubmitClick = (e) => {
         e.preventDefault();
-        this.setState({
-            show: 1,
-        });
+        setShow(1);
     }
 
-
-    render() {
-        return (
-            <div>{this.toggle()}</div>
-        );
-    }
+    return (
+        <div>{toggle()}</div>
+    );
 }
 
 export default Practical;

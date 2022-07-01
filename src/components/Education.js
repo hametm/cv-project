@@ -1,82 +1,67 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "../styles/style.css";
 
-class Education extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            school: "",
-            major: "",
-            startDate: "",
-            endDate: "",
-            show: 1,
+function Education(props) {
+    const [school, setSchool] = useState("");
+    const [major, setMajor] = useState("");
+    const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
+    const [show, setShow] = useState(1);
+
+    const changeSchool = (e) => {
+        setSchool(e.target.value);
+    }
+
+    const changeMajor = (e) => {
+        setMajor(e.target.value);
+    }
+
+    const changeStartDate = (e) => {
+        setStartDate(e.target.value);
+    }
+
+    const changeEndDate = (e) => {
+        setEndDate(e.target.value);
+    }
+
+    const toggle = () => {
+        if (show === 1) {
+            return showEducation();
+        }
+        if (show === 0) {
+            return editEducation();
         }
     }
 
-    changeSchool = (e) => {
-        this.setState({
-            school: e.target.value,
-        });
-    }
-
-    changeMajor = (e) => {
-        this.setState({
-            major: e.target.value,
-        });
-    }
-
-    changeStartDate = (e) => {
-        this.setState({
-            startDate: e.target.value,
-        });
-    }
-
-    changeEndDate = (e) => {
-        this.setState({
-            endDate: e.target.value,
-        });
-    }
-
-    toggle = () => {
-        if (this.state.show === 1) {
-            return this.showEducation();
-        }
-        if (this.state.show === 0) {
-            return this.editEducation();
-        }
-    }
-
-    onEditClick = (e) => {
+    const onEditClick = (e) => {
         e.preventDefault();
-        this.setState({
-            show: 0,
-        });
+        setShow(0);
     }
 
-    showEducation = () => {
+    const showEducation = () => {
         return (
             <div id="educationContainer" className="section">
                 <h2>Education</h2>
                 <div className="buttonContainer">
-                    <button onClick={this.onEditClick}>Edit</button>
+                    <button onClick={onEditClick}>Edit</button>
                 </div>
-                <p>{this.state.school}</p>
-                <p>{this.state.major}</p>
-                <p>{this.state.startDate}</p>
-                <p>{this.state.endDate}</p>
+                <p>{school}</p>
+                <p>{major}</p>
+                <p>{startDate}</p>
+                <p>{endDate}</p>
             </div>
         );
     }
 
-    editEducation = () => {
+    const editEducation = () => {
         return (
             <div id="educationContainer" className="section">
                 <h2>Education</h2>
                 <div className="info">
                     <label htmlFor="school">University</label>
                     <input
-                        onChange={this.changeSchool}
-                        value={this.state.school}
+                        onChange={changeSchool}
+                        value={school}
                         type="text"
                         id="school"
                     />
@@ -84,8 +69,8 @@ class Education extends Component {
                 <div className="info">
                     <label htmlFor="major">Major</label>
                     <input
-                        onChange={this.changeMajor}
-                        value={this.state.major}
+                        onChange={changeMajor}
+                        value={major}
                         type="text"
                         id="major"
                     />
@@ -93,8 +78,8 @@ class Education extends Component {
                 <div className="info">
                     <label htmlFor="startDate">Start date</label>
                     <input
-                        onChange={this.changeStartDate}
-                        value={this.state.startDate}
+                        onChange={changeStartDate}
+                        value={startDate}
                         type="date"
                         id="startDate"
                     />
@@ -102,31 +87,27 @@ class Education extends Component {
                 <div className="info">
                     <label htmlFor="endDate">End date</label>
                     <input
-                        onChange={this.changeEndDate}
-                        value={this.state.endDate}
+                        onChange={changeEndDate}
+                        value={endDate}
                         type="date"
                         id="endDate"
                     />
                 </div>
                 <div className="buttonContainer">
-                    <button onClick={this.onSubmitClick}>Submit</button>
+                    <button onClick={onSubmitClick}>Submit</button>
                 </div>
             </div>
         );
     }
 
-    onSubmitClick = (e) => {
+    const onSubmitClick = (e) => {
         e.preventDefault();
-        this.setState({
-            show: 1,
-        });
+        setShow(1);
     }
 
-    render() {
-        return (
-            <div>{this.toggle()}</div>
-        );
-    }
+    return (
+        <div>{toggle()}</div>
+    );
 }
 
 export default Education;

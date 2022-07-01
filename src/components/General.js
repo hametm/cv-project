@@ -1,85 +1,69 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "../styles/style.css";
 
-class General extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: "First Last",
-            email: "example@example.com",
-            phone: "123-456",
-            show: 1,
+const General = (props) => {
+    const [name, setName] = useState("First Last");
+    const [email, setEmail] = useState("example@example.com");
+    const [phone, setPhone] = useState("123-456");
+    const [show, setShow] = useState(1);
+
+    const changeName = (e) => {
+        setName(e.target.value);
+    }
+
+    const changeEmail = (e) => {
+        setEmail(e.target.value);
+    }
+
+    const changePhone = (e) => {
+        setPhone(e.target.value)
+    }
+
+    const toggle = () => {
+        if (show === 1) {
+            return showGeneral();
+        }
+        if (show === 0) {
+            return editGeneral();
         }
     }
 
-    changeName = (e) => {
-        this.setState({
-            name: e.target.value,
-        });
-    }
-
-    changeEmail = (e) => {
-        this.setState({
-            email: e.target.value,
-        });
-    }
-
-    changePhone = (e) => {
-        this.setState({
-            phone: e.target.value,
-        });
-    }
-
-    toggle = () => {
-        if (this.state.show === 1) {
-            return this.showGeneral();
-        }
-        if (this.state.show === 0) {
-            return this.editGeneral();
-        }
-    }
-
-    onEditClick = (e) => {
+    const onEditClick = (e) => {
         e.preventDefault();
-        this.setState({
-            show: 0,
-        });
+        setShow(0);
     }
 
-    onSubmitClick = (e) => {
+    const onSubmitClick = (e) => {
         e.preventDefault();
-        this.setState({
-            show: 1,
-        });
-        
+        setShow(1);
     }
 
-    showGeneral = () => {
+    const showGeneral = () => {
         return (
             <div id="generalContainer" className="section">
                 <div id="nameContainer" className="info">
-                    <h2 id="nameHeader">{this.state.name}</h2>
+                    <h2 id="nameHeader">{name}</h2>
                 </div>
                <div id="contactInfo" className="info">
-                    <p>{this.state.email}</p>
-                    <p>{this.state.phone}</p>
+                    <p>{email}</p>
+                    <p>{phone}</p>
                     <div className="buttonContainer">
-                        <button onClick={this.onEditClick}>Edit</button>
+                        <button onClick={onEditClick}>Edit</button>
                     </div>
                </div>
             </div>
         );
     }
 
-    editGeneral = () => {
+    const editGeneral = () => {
         return (
             <div id="generalContainer" className="section">
                 <h2>Personal Details</h2>
                 <div className="info">
                     <label htmlFor="name">Name</label>
                     <input
-                        onChange={this.changeName}
-                        value={this.state.name}
+                        onChange={changeName}
+                        value={name}
                         type="text"
                         id="name"
                     />
@@ -87,8 +71,8 @@ class General extends Component {
                 <div className="info">
                     <label htmlFor="email">Email</label>
                     <input
-                        onChange={this.changeEmail}
-                        value={this.state.email}
+                        onChange={changeEmail}
+                        value={email}
                         type="email"
                         id="email"
                     />
@@ -96,24 +80,22 @@ class General extends Component {
                 <div className="info">
                     <label htmlFor="phone">Phone number</label>
                     <input
-                        onChange={this.changePhone}
-                        value={this.state.phone}
+                        onChange={changePhone}
+                        value={phone}
                         type="tel"
                         id="phone"
                     />
                 </div>
                 <div className="buttonContainer">
-                    <button onClick={this.onSubmitClick}>Submit</button>
+                    <button onClick={onSubmitClick}>Submit</button>
                 </div>
             </div>
         );
     }
 
-    render() {
-        return (
-            <div>{this.toggle()}</div>
-        );
-    }
+    return (
+        <div>{toggle()}</div>
+    );
 }
 
 export default General;

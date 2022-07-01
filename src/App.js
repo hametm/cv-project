@@ -4,13 +4,11 @@ import Education from './components/Education';
 import Practical from './components/Practical';
 import "./styles/style.css";
 
-class App extends Component {
-  constructor() {
-    super();
-  }
+const App =() => {
+
 
   // This one doesn't seem to work, wherever it's placed
-  toggleHiddenElements = () => {
+  const toggleHiddenElements = () => {
     const elements = document.querySelectorAll("p");
     [...elements].forEach(p => {
         if (p.textContent === "") {
@@ -22,7 +20,7 @@ class App extends Component {
     });
 }
 
-  render() {
+ 
     return (
       <div className="App">
         <header>
@@ -33,10 +31,10 @@ class App extends Component {
           <Education />
           <Practical />
         </form>
-        {this.toggleHiddenElements()}
+        {toggleHiddenElements()}
       </div>
     );
-  }
+  
 }
 
 export default App;
