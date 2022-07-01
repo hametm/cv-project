@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../styles/style.css";
 
 class Practical extends Component {
     constructor(props) {
@@ -62,61 +63,72 @@ class Practical extends Component {
 
     showPractical = () => {
         return (
-            <div id="practicalContainer">
-                <label htmlFor="company">Company</label>
+            <div id="practicalContainer" className="section">
+                <h2>Employment</h2>
+                <div className="buttonContainer">
+                    <button onClick={this.onEditClick}>Edit</button>
+                </div>
                 <p>{this.state.company}</p>
-                <label htmlFor="position">Position</label>
                 <p>{this.state.position}</p>
-                <label htmlFor="responsibilities">Responsibilities</label>
                 <p>{this.state.responsibilities}</p>
-                <label htmlFor="startDate">Start date</label>
                 <p>{this.state.startDate}</p>
-                <label htmlFor="endDate">End date</label>
                 <p>{this.state.endDate}</p>
-                <button onClick={this.onEditClick}>Edit</button>
             </div>
         );
     }
 
     editPractical = () => {
         return (
-            <div>
-                <label htmlFor="company">Company</label>
-                <input 
-                    onChange={this.changeCompany}
-                    value={this.state.company}
-                    type="text" 
-                    id="company" 
-                />
-                <label htmlFor="position">Position</label>
-                <input 
-                    onChange={this.changePosition}
-                    value={this.state.position}
-                    type="text" 
-                    id="position" 
-                />
-                <label htmlFor="responsibilities">Responsibilities</label>
-                <input 
-                    onChange={this.changeResponsibilities}
-                    value={this.state.responsibilities}
-                    type="text" 
-                    id="responsibilities" 
-                />
-                <label htmlFor="startDate">Start date</label>
-                <input
-                    onChange={this.changeStartDate}
-                    value={this.state.startDate} 
-                    type="date" 
-                    id="startDate" 
-                />
-                <label htmlFor="endDate">End date</label>
-                <input 
-                    onChange={this.changeEndDate}
-                    value={this.state.endDate}
-                    type="date" 
-                    id="endDate" 
-                />
-                <button onClick={this.onSubmitClick}>Submit</button>
+            <div id="practicalContainer" className="section">
+                <h2>Employment</h2>
+                <div className="info">
+                    <label htmlFor="company">Company</label>
+                    <input
+                        onChange={this.changeCompany}
+                        value={this.state.company}
+                        type="text"
+                        id="company"
+                    />
+                </div>
+                <div className="info">
+                    <label htmlFor="position">Position</label>
+                    <input
+                        onChange={this.changePosition}
+                        value={this.state.position}
+                        type="text"
+                        id="position"
+                    />
+                </div>
+                <div className="info">
+                    <label htmlFor="responsibilities">Responsibilities</label>
+                    <input
+                        onChange={this.changeResponsibilities}
+                        value={this.state.responsibilities}
+                        type="text"
+                        id="responsibilities"
+                    />
+                </div>
+                <div className="info">
+                    <label htmlFor="startDate">Start date</label>
+                    <input
+                        onChange={this.changeStartDate}
+                        value={this.state.startDate}
+                        type="date"
+                        id="startDate"
+                    />
+                </div>
+                <div className="info">
+                    <label htmlFor="endDate">End date</label>
+                    <input
+                        onChange={this.changeEndDate}
+                        value={this.state.endDate}
+                        type="date"
+                        id="endDate"
+                    />
+                </div>
+                <div className="buttonContainer">
+                    <button onClick={this.onSubmitClick}>Submit</button>
+                </div>
             </div>
         );
     }

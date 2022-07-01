@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../styles/style.css";
 
 class Education extends Component {
     constructor(props) {
@@ -54,52 +55,62 @@ class Education extends Component {
 
     showEducation = () => {
         return (
-            <div id="educationContainer">
-                <label htmlFor="school">School</label>
+            <div id="educationContainer" className="section">
+                <h2>Education</h2>
+                <div className="buttonContainer">
+                    <button onClick={this.onEditClick}>Edit</button>
+                </div>
                 <p>{this.state.school}</p>
-                <label htmlFor="major">Major</label>
                 <p>{this.state.major}</p>
-                <label htmlFor="startDate">Start date</label>
                 <p>{this.state.startDate}</p>
-                <label htmlFor="endDate">End date</label>
                 <p>{this.state.endDate}</p>
-                <button onClick={this.onEditClick}>Edit</button>
             </div>
         );
     }
 
     editEducation = () => {
         return (
-            <div id="educationContainer">
-                <label htmlFor="school">University</label>
-                <input 
-                    onChange={this.changeSchool}
-                    value={this.state.school}
-                    type="text" 
-                    id="school" 
-                />
-                <label htmlFor="major">Major</label>
-                <input 
-                    onChange={this.changeMajor}
-                    value={this.state.major}
-                    type="text" 
-                    id="major" 
-                />
-                <label htmlFor="startDate">Start date</label>
-                <input 
-                    onChange={this.changeStartDate}
-                    value={this.state.startDate}
-                    type="date" 
-                    id="startDate" 
-                />
-                <label htmlFor="endDate">End date</label>
-                <input 
-                    onChange={this.changeEndDate}
-                    value={this.state.endDate}
-                    type="date" 
-                    id="endDate" 
-                />
-                <button onClick={this.onSubmitClick}>Submit</button>
+            <div id="educationContainer" className="section">
+                <h2>Education</h2>
+                <div className="info">
+                    <label htmlFor="school">University</label>
+                    <input
+                        onChange={this.changeSchool}
+                        value={this.state.school}
+                        type="text"
+                        id="school"
+                    />
+                </div>
+                <div className="info">
+                    <label htmlFor="major">Major</label>
+                    <input
+                        onChange={this.changeMajor}
+                        value={this.state.major}
+                        type="text"
+                        id="major"
+                    />
+                </div>
+                <div className="info">
+                    <label htmlFor="startDate">Start date</label>
+                    <input
+                        onChange={this.changeStartDate}
+                        value={this.state.startDate}
+                        type="date"
+                        id="startDate"
+                    />
+                </div>
+                <div className="info">
+                    <label htmlFor="endDate">End date</label>
+                    <input
+                        onChange={this.changeEndDate}
+                        value={this.state.endDate}
+                        type="date"
+                        id="endDate"
+                    />
+                </div>
+                <div className="buttonContainer">
+                    <button onClick={this.onSubmitClick}>Submit</button>
+                </div>
             </div>
         );
     }
